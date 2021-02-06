@@ -6,14 +6,14 @@ function SettingUp() {
 }
 
 function calc() {
-  let val1 = parseInt(document.querySelector("#firstnumber").value);
-  let val2 = parseInt(document.querySelector("#secondnumber").value);
+  let val1 = parseFloat(document.querySelector("#firstnumber").value);
+  let val2 = parseFloat(document.querySelector("#secondnumber").value);
   let operator = document.querySelector("#operator").value;
   let calculated;
 
   if (operator == "add") {
     calculated = val1 + val2;
-  } else if (operator == "sup") {
+  } else if (operator == "sub") {
     calculated = val1 - val2;
   } else if (operator == "mul") {
     calculated = val1 * val2;
@@ -26,11 +26,37 @@ function calc() {
 }
 
 function showResult(calculated) {
-  var node = document.createElement("LI");
-  var textnode = document.createTextNode(calculated);
+  console.log("show results");
+  let num = calculated;
+  let n;
+  let option = document.querySelector("#decimals").value;
+
+  if (option == "0") {
+    n = num.toFixed(0);
+    console.log(n);
+  } else if (option == "1") {
+    n = num.toFixed(1);
+  } else if (option == "2") {
+    n = num.toFixed(2);
+  } else if (option == "3") {
+    n = num.toFixed(3);
+  } else if (option == "4") {
+    n = num.toFixed(4);
+  } else if (option == "5") {
+    n = num.toFixed(5);
+  } else if (option == "6") {
+    n = num.toFixed(6);
+  } else if (option == "7") {
+    n = num.toFixed(7);
+  } else if (option == "8") {
+    n = num.toFixed(8);
+  }
+
+  let node = document.createElement("LI");
+  let textnode = document.createTextNode(n);
   node.appendChild(textnode);
 
-  var list = document.getElementById("results");
+  let list = document.getElementById("results");
   list.insertBefore(node, list.childNodes[0]);
 
   document.querySelector("#clear").addEventListener("click", removeAll);
